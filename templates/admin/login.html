@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block titulo %}Login — Admin{% endblock %}
+
+{% block conteudo %}
+<section class="container pagina">
+    <h1>Painel administrativo</h1>
+    <form method="POST" class="form-admin">
+        <label>Usuário
+            <input type="text" name="username" required>
+        </label>
+        <label>Senha
+            <input type="password" name="password" required>
+        </label>
+        <button class="btn" type="submit">Entrar</button>
+    </form>
+</section>
+{% endblock %}

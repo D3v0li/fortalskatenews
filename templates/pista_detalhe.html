@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block titulo %}{{ pista.nome }} — Skate Cultura{% endblock %}
+
+{% block conteudo %}
+<article class="container artigo-completo">
+    <span class="categoria">{{ pista.bairro }} • Fortaleza, CE</span>
+    <h1>{{ pista.nome }}</h1>
+    {% if pista.imagem %}
+        <img class="capa" src="{{ url_for('static', filename='uploads/' ~ pista.imagem) }}" alt="{{ pista.nome }}">
+    {% endif %}
+    <div class="conteudo">
+        <p>{{ pista.descricao }}</p>
+
+        {% if pista.estrutura %}
+        <h2>Estrutura</h2>
+        <p>{{ pista.estrutura }}</p>
+        {% endif %}
+
+        {% if pista.observacoes %}
+        <h2>Informações úteis</h2>
+        <p>{{ pista.observacoes }}</p>
+        {% endif %}
+
+        {% if pista.endereco %}
+        <h2>Localização</h2>
+        <p>{{ pista.endereco }}</p>
+        {% endif %}
+
+        {% if pista.link_maps %}
+        <p><a class="btn" href="{{ pista.link_maps }}" target="_blank" rel="noopener">Abrir no Google Maps</a></p>
+        {% endif %}
+    </div>
+</article>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block titulo %}Fortal SkateNews — O skate acontece aqui{% endblock %}
+
+{% block conteudo %}
+<section class="hero">
+    <div class="container">
+        <p class="tag">CULTURA • NOTÍCIAS • SKATE</p>
+        <h1>O skate acontece aqui.</h1>
+        <p class="lead">Notícias, pistas e histórias de quem vive sobre quatro rodinhas.</p>
+    </div>
+</section>
+
+{% if destaque %}
+<section class="container destaque">
+    <p class="secao-label">Destaque da semana</p>
+    <a href="{{ url_for('artigo', slug=destaque.slug) }}" class="destaque-card">
+        {% if destaque.imagem_capa %}
+            <img src="{{ url_for('static', filename='uploads/' ~ destaque.imagem_capa) }}" alt="{{ destaque.titulo }}">
+        {% endif %}
+        <div class="destaque-info">
+            <span class="categoria">{{ destaque.categoria|upper }}</span>
+            <h2>{{ destaque.titulo }}</h2>
+            <p>{{ destaque.resumo }}</p>
+            <span class="data">{{ destaque.data_publicacao|data_br }}</span>
+        </div>
+    </a>
+</section>
+{% endif %}
+
+<section class="container ultimas">
+    <h2 class="secao-titulo">Últimas notícias</h2>
+    <div class="grid-noticias">
+        {% for a in artigos %}
+        <article class="card">
+            <a href="{{ url_for('artigo', slug=a.slug) }}">
+                {% if a.imagem_capa %}
+                    <img src="{{ url_for('static', filename='uploads/' ~ a.imagem_capa) }}" alt="{{ a.titulo }}">
+                {% else %}
+                    <div class="sem-imagem">Skate</div>
+                {% endif %}
+                <div class="card-info">
+                    <span class="categoria">{{ a.categoria|upper }}</span>
+                    <h3>{{ a.titulo }}</h3>
+                    <p>{{ a.resumo|resumo_curto }}</p>
+                    <span class="data">{{ a.data_publicacao|data_br }}</span>
+                </div>
+            </a>
+        </article>
+        {% else %}
+        <p>Nenhuma notícia publicada ainda.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

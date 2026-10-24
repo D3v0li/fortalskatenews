@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block titulo %}Dashboard — Admin{% endblock %}
+
+{% block conteudo %}
+<section class="container pagina">
+    <div class="dashboard-header">
+        <h1>Painel</h1>
+        <div>
+            <a class="btn" href="{{ url_for('novo_artigo') }}">+ Novo artigo</a>
+            <a class="btn" href="{{ url_for('nova_pista') }}">+ Nova pista</a>
+            <a class="btn btn-outline" href="{{ url_for('logout') }}">Sair</a>
+        </div>
+    </div>
+
+    <h2>Artigos</h2>
+    <table class="tabela">
+        <thead>
+            <tr><th>Título</th><th>Categoria</th><th>Status</th><th>Data</th><th>Ações</th></tr>
+        </thead>
+        <tbody>
+        {% for a in artigos %}
+            <tr>
+                <td>{{ a.titulo }}</td>
+                <td>{{ a.categoria }}</td>
+                <td>{{ a.status }}</td>
+                <td>{{ a.data_publicacao|data_br }}</td>
+                <td>
+                    <a href="{{ url_for('editar_artigo', artigo_id=a.id) }}">Editar</a>
+                    <form method="POST" action="{{ url_for('excluir_artigo', artigo_id=a.id) }}" style="display:inline" onsubmit="return confirm('Excluir?')">
+                        <button class="link-danger" type="submit">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Pistas</h2>
+    <table class="tabela">
+        <thead>
+            <tr><th>Nome</th><th>Bairro</th><th>Ações</th></tr>
+        </thead>
+        <tbody>
+        {% for p in pistas %}
+            <tr>
+                <td>{{ p.nome }}</td>
+                <td>{{ p.bairro }}</td>
+                <td>
+                    <a href="{{ url_for('editar_pista', pista_id=p.id) }}">Editar</a>
+                    <form method="POST" action="{{ url_for('excluir_pista', pista_id=p.id) }}" style="display:inline" onsubmit="return confirm('Excluir?')">
+                        <button class="link-danger" type="submit">Excluir</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

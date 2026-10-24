@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block titulo %}{{ artigo.titulo }} — Skate Cultura{% endblock %}
+{% block descricao %}{{ artigo.resumo }}{% endblock %}
+
+{% block conteudo %}
+<article class="container artigo-completo">
+    <span class="categoria">{{ artigo.categoria|upper }}</span>
+    <h1>{{ artigo.titulo }}</h1>
+    <p class="data">{{ artigo.data_publicacao|data_br }}</p>
+    {% if artigo.imagem_capa %}
+        <img class="capa" src="{{ url_for('static', filename='uploads/' ~ artigo.imagem_capa) }}" alt="{{ artigo.titulo }}">
+    {% endif %}
+    <div class="conteudo">
+        {{ artigo.conteudo|safe }}
+    </div>
+
+    <div class="compartilhar">
+        <span>Compartilhar:</span>
+        <a href="https://api.whatsapp.com/send?text={{ request.url|urlencode }}" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://twitter.com/intent/tweet?url={{ request.url|urlencode }}&text={{ artigo.titulo|urlencode }}" target="_blank" rel="noopener">X</a>
+    </div>
+</article>
+{% endblock %}

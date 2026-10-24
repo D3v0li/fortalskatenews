@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block titulo %}Pistas de Fortaleza — Skate Cultura{% endblock %}
+
+{% block conteudo %}
+<section class="container pagina">
+    <h1>Pistas de Fortaleza</h1>
+    <p>Conheça os principais espaços de skate da cidade.</p>
+
+    <div class="grid-noticias">
+        {% for p in pistas %}
+        <article class="card">
+            <a href="{{ url_for('pista_detalhe', pista_id=p.id) }}">
+                {% if p.imagem %}
+                    <img src="{{ url_for('static', filename='uploads/' ~ p.imagem) }}" alt="{{ p.nome }}">
+                {% else %}
+                    <div class="sem-imagem">Pista</div>
+                {% endif %}
+                <div class="card-info">
+                    <h3>{{ p.nome }}</h3>
+                    <p class="bairro">{{ p.bairro }} • Fortaleza, CE</p>
+                    <p>{{ p.descricao|resumo_curto }}</p>
+                </div>
+            </a>
+        </article>
+        {% else %}
+        <p>Nenhuma pista cadastrada ainda.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

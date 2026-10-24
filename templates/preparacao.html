@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block titulo %}Preparação física para skatistas — Skate Cultura{% endblock %}
+
+{% block conteudo %}
+<section class="container pagina">
+    <h1>Preparação física para skatistas</h1>
+    <p>Força, mobilidade, equilíbrio e prevenção de lesões.</p>
+
+    <div class="grid-noticias">
+        {% for a in artigos %}
+        <article class="card">
+            <a href="{{ url_for('artigo', slug=a.slug) }}">
+                {% if a.imagem_capa %}
+                    <img src="{{ url_for('static', filename='uploads/' ~ a.imagem_capa) }}" alt="{{ a.titulo }}">
+                {% else %}
+                    <div class="sem-imagem">Treino</div>
+                {% endif %}
+                <div class="card-info">
+                    {% if a.subcategoria %}<span class="categoria">{{ a.subcategoria|upper }}</span>{% endif %}
+                    <h3>{{ a.titulo }}</h3>
+                    <p>{{ a.resumo|resumo_curto }}</p>
+                    <span class="data">{{ a.data_publicacao|data_br }}</span>
+                </div>
+            </a>
+        </article>
+        {% else %}
+        <p>Nenhum artigo publicado ainda.</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

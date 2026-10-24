@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block titulo %}{{ 'Editar' if pista else 'Nova' }} pista — Admin{% endblock %}
+
+{% block conteudo %}
+<section class="container pagina">
+    <h1>{{ 'Editar' if pista else 'Nova' }} pista</h1>
+    <form method="POST" enctype="multipart/form-data" class="form-admin">
+        <label>Nome
+            <input type="text" name="nome" value="{{ pista.nome if pista else '' }}" required>
+        </label>
+        <label>Bairro
+            <input type="text" name="bairro" value="{{ pista.bairro if pista else '' }}" required>
+        </label>
+        <label>Endereço
+            <input type="text" name="endereco" value="{{ pista.endereco if pista else '' }}">
+        </label>
+        <label>Descrição
+            <textarea name="descricao" rows="5" required>{{ pista.descricao if pista else '' }}</textarea>
+        </label>
+        <label>Estrutura
+            <textarea name="estrutura" rows="3">{{ pista.estrutura if pista else '' }}</textarea>
+        </label>
+        <label>Observações
+            <textarea name="observacoes" rows="3">{{ pista.observacoes if pista else '' }}</textarea>
+        </label>
+        <label>Link do Google Maps
+            <input type="url" name="link_maps" value="{{ pista.link_maps if pista else '' }}">
+        </label>
+        <label>Imagem
+            <input type="file" name="imagem" accept="image/*">
+        </label>
+        <button class="btn" type="submit">Salvar</button>
+    </form>
+</section>
+{% endblock %}
