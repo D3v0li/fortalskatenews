@@ -1,29 +1,35 @@
 {% extends "base.html" %}
-{% block titulo %}Quem sou — Fortal SkateNews{% endblock %}
+{% block titulo %}Quem sou — Skate Cultura{% endblock %}
 
 {% block conteudo %}
 <section class="container pagina quem-sou">
     <h1>Quem está por trás do projeto</h1>
 
-        <div class="bio-foto">
-            <img src="{{ url_for('static', filename='uploads/autor.webp') }}" alt="Foto do autor">
+    <!-- O style inline abaixo força o grid, ignorando o CSS externo -->
+    <div style="display: grid; grid-template-columns: 300px 1fr; gap: 40px; align-items: start; width: 100%;">
+        
+        <div style="width: 100%; max-width: 300px;">
+            <img src="{{ url_for('static', filename='uploads/autor.webp') }}" alt="Foto do autor" style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px; display: block;">
         </div>
-        <div class="bio-texto">
-            <h2>Olá, sou skatista e criador do Fortal SkateNews.</h2>
+
+        <div style="width: 100%; min-width: 0;">
+            <h2>Olá, sou skatista e criador do FortalSkateNews.</h2>
             <p>
-                Meu nome é [seu nome], ando de skate há [X anos] e criei o [nome do site] 
-                para reunir notícias, pistas e dicas de treino em um só lugar.
+                Fala galera me chamo Darjan já andei de skate nos anos 90, e resolvi criar este projeto para divulgar um pouco mais a cena do skate em Fortaleza e quem sabe
+                extender para todo o Ceará. O projeto nasce da vontade de reunir notícias sobre eventos, informações sobre as pistas de Fortaleza, entrevistas com skatistas
+                e conteúdos de preparação física tudo de skatista para skatista.
             </p>
             <p>
-                A ideia surgiu quando [motivo real - ex: percebi que faltava informação sobre 
-                pistas em Fortaleza / queria ajudar skatistas iniciantes / etc].
+                Minha história no skate começou no finalzinho dos anos 80 e continuei andando até o ano de 96 mais ou menos. Já participei de campeonatos na época de quem lembra
+                da UCS União Cearense de Skate e corri também o circuito norte e nordeste de skate amador da BadBoy, vivi toda a cena do skate e seus altos e baixos aqui em Fortaleza.
+                Então esse site é um pouco da minha contribuição ao skate cearense, aqui quero levar informação para o leitor que não conhece muito o skate em Fortaleza nossos eventos,
+                nossos atletas destaques, nossos atletas que fizeram história e contribuíram para o crescimento da modalidade e teremos também contéudo especial sobre preparação física para os
+                skatistas. Espero que curtam esse novo canal de divulgação do skate 🤘🏼🛹whohoo.
+                
             </p>
-            <p>
-                Aqui você vai encontrar [o que você publica - notícias, fichas de pistas, 
-                conteúdo de preparação física].
-            </p>
-            <a class="btn" href="https://wa.me/5585999999999" target="_blank" rel="noopener">Falar no WhatsApp</a>
+            <a class="btn" href="https://wa.me/5585982207633" target="_blank" rel="noopener">Falar no WhatsApp</a>
         </div>
+
     </div>
 </section>
 {% endblock %}
