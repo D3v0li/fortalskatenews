@@ -210,21 +210,51 @@ h1, h2, h3 { font-family: 'Archivo', sans-serif; letter-spacing: -0.02em; line-h
     .rodape-conteudo { grid-template-columns: 1fr; }
 }
 
-/* Estilo específico para a foto do Quem Sou */
-.bio-foto img {
+/* ===== Bio (Página Quem Sou) ===== */
+.bio { 
+    display: grid; 
+    grid-template-columns: 300px 1fr; /* No PC: Foto 300px, Texto o resto */
+    gap: 40px; 
+    align-items: start; 
     width: 100%;
-    max-width: 300px; /* Limita o tamanho máximo no PC */
-    height: 300px;    /* Define uma altura fixa */
-    object-fit: cover; /* Faz a imagem preencher o espaço sem achatar */
-    border-radius: 8px; /* Deixa as bordas arredondadas (opcional) */
-    display: block;
-    margin: 0 auto;   /* Centraliza a foto */
 }
 
-/* Ajuste para celular */
-@media (max-width: 640px) {
+.bio-foto {
+    width: 100%;
+}
+
+.bio-foto img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover; 
+    border-radius: 8px;
+    display: block;
+}
+
+.bio-texto {
+    width: 100%;
+    min-width: 0; 
+}
+
+.bio-texto h2 { 
+    font-size: 1.8rem; 
+    margin-bottom: 16px; 
+}
+
+.bio-texto p { 
+    margin-bottom: 16px; 
+    font-size: 1.05rem;
+}
+
+/* MÁGICA PARA O CELULAR: Muda de lado a lado para um em cima do outro */
+@media (max-width: 900px) {
+    .bio {
+        grid-template-columns: 1fr; /* Coloca em 1 coluna só */
+        gap: 24px;
+    }
     .bio-foto img {
-        max-width: 100%;
-        height: 250px;
+        height: auto;
+        max-height: 400px; /* Não deixa a foto ficar gigante no celular */
+        aspect-ratio: 1 / 1;
     }
 }
