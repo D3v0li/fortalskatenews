@@ -5,3 +5,7 @@ __pycache__/
 *.pyc
 static/uploads/*
 !static/uploads/.gitkeep
+!static/uploads/*.webp
+!static/uploads/*.jpg
+!static/uploads/*.jpeg
+!static/uploads/*.png
