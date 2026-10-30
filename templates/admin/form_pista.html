@@ -5,30 +5,49 @@
 <section class="container pagina">
     <h1>{{ 'Editar' if pista else 'Nova' }} pista</h1>
     <form method="POST" enctype="multipart/form-data" class="form-admin">
+        
         <label>Nome
             <input type="text" name="nome" value="{{ pista.nome if pista else '' }}" required>
         </label>
+        
         <label>Bairro
             <input type="text" name="bairro" value="{{ pista.bairro if pista else '' }}" required>
         </label>
+        
         <label>Endereço
             <input type="text" name="endereco" value="{{ pista.endereco if pista else '' }}">
         </label>
+        
         <label>Descrição
             <textarea name="descricao" rows="5" required>{{ pista.descricao if pista else '' }}</textarea>
         </label>
+        
         <label>Estrutura
             <textarea name="estrutura" rows="3">{{ pista.estrutura if pista else '' }}</textarea>
         </label>
+        
         <label>Observações
             <textarea name="observacoes" rows="3">{{ pista.observacoes if pista else '' }}</textarea>
         </label>
+        
         <label>Link do Google Maps
             <input type="url" name="link_maps" value="{{ pista.link_maps if pista else '' }}">
         </label>
-        <label>Imagem
+        
+        <label>Imagem de Capa
             <input type="file" name="imagem" accept="image/*">
         </label>
+
+        <div style="background: #eee; padding: 15px; border-radius: 4px; margin: 10px 0;">
+            <p style="margin-bottom: 10px; font-weight: bold; color: #333;">Galeria de Fotos (Até 6 fotos)</p>
+            <label>Foto 1 <input type="file" name="foto_galeria_1" accept="image/*"></label>
+            <label>Foto 2 <input type="file" name="foto_galeria_2" accept="image/*"></label>
+            <label>Foto 3 <input type="file" name="foto_galeria_3" accept="image/*"></label>
+            <label>Foto 4 <input type="file" name="foto_galeria_4" accept="image/*"></label>
+            <label>Foto 5 <input type="file" name="foto_galeria_5" accept="image/*"></label>
+            <label>Foto 6 <input type="file" name="foto_galeria_6" accept="image/*"></label>
+        </div>
+
         <button class="btn" type="submit">Salvar</button>
     </form>
 </section>

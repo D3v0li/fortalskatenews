@@ -192,6 +192,20 @@ def excluir_artigo(artigo_id):
 @login_required
 def nova_pista():
     if request.method == "POST":
+        # Salva a capa
+        imagem_capa = salvar_imagem(request.files.get("imagem"))
+        
+        # Salva a galeria
+        fotos_galeria = []
+        for i in range(1, 7):
+            arquivo_foto = request.files.get(f"foto_galeria_{i}")
+            if arquivo_foto and arquivo_foto.filename != "":
+                nome_foto = salvar_imagem(arquivo_foto)
+                if nome_foto:
+                    fotos_galeria.append(nome_foto)
+        
+        galeria_str = ",".join(fotos_galeria) if fotos_galeria else None
+
         pista = Pista(
             nome=request.form["nome"].strip(),
             bairro=request.form["bairro"].strip(),
@@ -200,7 +214,8 @@ def nova_pista():
             estrutura=request.form.get("estrutura", ""),
             observacoes=request.form.get("observacoes", ""),
             link_maps=request.form.get("link_maps", ""),
-            imagem=salvar_imagem(request.files.get("imagem")),
+            imagem=imagem_capa,
+            galeria=galeria_str
         )
         db.session.add(pista)
         db.session.commit()
@@ -221,9 +236,30 @@ def editar_pista(pista_id):
         pista.estrutura = request.form.get("estrutura", "")
         pista.observacoes = request.form.get("observacoes", "")
         pista.link_maps = request.form.get("link_maps", "")
-        nova = salvar_imagem(request.files.get("imagem"))
-        if nova:
-            pista.imagem = nova
+        
+        # Atualiza a capa se enviar uma nova
+        nova_capa = salvar_imagem(request.files.get("imagem"))
+        if nova_capa:
+            pista.imagem = nova_capa
+            
+        # Atualiza a galeria
+        fotos_galeria = []
+        if pista.galeria:
+            fotos_galeria = pista.galeria.split(",")
+            
+        for i in range(1, 7):
+            arquivo_foto = request.files.get(f"foto_galeria_{i}")
+            if arquivo_foto and arquivo_foto.filename != "":
+                nome_foto = salvar_imagem(arquivo_foto)
+                if nome_foto:
+                    if len(fotos_galeria) >= i:
+                        fotos_galeria[i-1] = nome_foto
+                    else:
+                        fotos_galeria.append(nome_foto)
+        
+        if fotos_galeria:
+            pista.galeria = ",".join(fotos_galeria)
+
         db.session.commit()
         flash("Pista atualizada.", "sucesso")
         return redirect(url_for("admin_dashboard"))

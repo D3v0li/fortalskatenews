@@ -15,6 +15,18 @@
         <h2>Estrutura</h2>
         <p>{{ pista.estrutura }}</p>
         {% endif %}
+        
+        <!-- NOVA GALERIA DE FOTOS -->
+        {% if pista.galeria %}
+        <h2>Fotos da Pista</h2>
+        <div class="galeria-fotos">
+            {% for foto in pista.galeria.split(',') %}
+                <a href="{{ url_for('static', filename='uploads/' ~ foto) }}" target="_blank">
+                    <img src="{{ url_for('static', filename='uploads/' ~ foto) }}" alt="Foto da pista {{ pista.nome }}">
+                </a>
+            {% endfor %}
+        </div>
+        {% endif %}
 
         {% if pista.observacoes %}
         <h2>Informações úteis</h2>

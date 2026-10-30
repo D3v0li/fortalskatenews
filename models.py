@@ -43,6 +43,7 @@ class Pista(db.Model):
     estrutura = db.Column(db.Text)
     observacoes = db.Column(db.Text)
     imagem = db.Column(db.String(255))
+    galeria = db.Column(db.Text)
     link_maps = db.Column(db.String(500))
     status = db.Column(db.String(20), default="publicado")
     data_cadastro = db.Column(db.DateTime, default=datetime.utcnow)
