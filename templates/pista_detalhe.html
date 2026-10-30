@@ -21,9 +21,24 @@
         <h2>Fotos da Pista</h2>
         <div class="galeria-fotos">
             {% for foto in pista.galeria.split(',') %}
-                <a href="{{ url_for('static', filename='uploads/' ~ foto) }}" target="_blank">
+                        <!-- NOVA GALERIA DE FOTOS -->
+        {% if pista.galeria %}
+        <h2>Fotos da Pista</h2>
+        <div class="galeria-fotos">
+            {% for foto in pista.galeria.split(',') %}
+                <!-- Removi o target="_blank" -->
+                <a href="#img{{ loop.index }}" class="abrir-foto">
                     <img src="{{ url_for('static', filename='uploads/' ~ foto) }}" alt="Foto da pista {{ pista.nome }}">
                 </a>
+                
+                <!-- O Lightbox (tela escura) -->
+                <div id="img{{ loop.index }}" class="lightbox">
+                    <a href="#fechar" class="fechar-lightbox">&times;</a>
+                    <img src="{{ url_for('static', filename='uploads/' ~ foto) }}">
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
             {% endfor %}
         </div>
         {% endif %}
@@ -39,7 +54,11 @@
         {% endif %}
 
         {% if pista.link_maps %}
-        <p><a class="btn" href="{{ pista.link_maps }}" target="_blank" rel="noopener">Abrir no Google Maps</a></p>
+        <p><a class="btn" href="{{ pista.link_maps }}" target="_blank" rel="noopener" 
+            onclick="window.open(this.href, 'mapa', 'width=800','height=600'); return false;">
+            Abrir no Google Maps
+            </a>
+        </p>
         {% endif %}
     </div>
 </article>
