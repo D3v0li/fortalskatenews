@@ -290,23 +290,44 @@ h1, h2, h3 { font-family: 'Archivo', sans-serif; letter-spacing: -0.02em; line-h
     }
 }
 
-/* ===== Lightbox da Galeria ===== */
-.lightbox {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+/* ===== Galeria de Fotos ===== */
+.galeria-fotos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0;
 }
 
-/* Quando o link for clicado, mostra o lightbox */
+.galeria-fotos img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.galeria-fotos img:hover {
+    transform: scale(1.05);
+}
+
+/* ===== Lightbox (Tela cheia) ===== */
+.lightbox {
+    display: none; /* Fica totalmente invisível */
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Quando o link for clicado, ele vira um flexbox para centralizar a imagem */
 .lightbox:target {
     display: flex;
-    opacity: 1;
 }
 
 .lightbox img {
@@ -320,12 +341,97 @@ h1, h2, h3 { font-family: 'Archivo', sans-serif; letter-spacing: -0.02em; line-h
     position: absolute;
     top: 20px;
     right: 30px;
-    font-size: 40px;
+    font-size: 50px;
     color: white;
     text-decoration: none;
     font-weight: bold;
+    line-height: 1;
 }
 
 .fechar-lightbox:hover {
     color: #D4FA67; /* Verde do seu site */
+}
+
+/* No celular, vira 2 colunas */
+@media (max-width: 640px) {
+    .galeria-fotos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    .galeria-fotos img {
+        height: 140px;
+    }
+}
+
+/* ===== Galeria de Fotos ===== */
+.galeria-fotos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.galeria-fotos img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.galeria-fotos img:hover {
+    transform: scale(1.05);
+}
+
+/* ===== Lightbox (Tela cheia) ===== */
+.lightbox {
+    display: none; /* Fica totalmente invisível */
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Quando o link for clicado, ele vira um flexbox para centralizar a imagem */
+.lightbox:target {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.fechar-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 50px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.fechar-lightbox:hover {
+    color: #D4FA67; /* Verde do seu site */
+}
+
+/* No celular, vira 2 colunas */
+@media (max-width: 640px) {
+    .galeria-fotos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    .galeria-fotos img {
+        height: 140px;
+    }
 }

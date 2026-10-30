@@ -21,27 +21,27 @@
         <h2>Fotos da Pista</h2>
         <div class="galeria-fotos">
             {% for foto in pista.galeria.split(',') %}
-                        <!-- NOVA GALERIA DE FOTOS -->
+        <!-- NOVA GALERIA DE FOTOS -->
         {% if pista.galeria %}
         <h2>Fotos da Pista</h2>
         <div class="galeria-fotos">
             {% for foto in pista.galeria.split(',') %}
                 <!-- Removi o target="_blank" -->
-                <a href="#img{{ loop.index }}" class="abrir-foto">
+                <a href="#img{{ loop.index }}" class="link-galeria">
                     <img src="{{ url_for('static', filename='uploads/' ~ foto) }}" alt="Foto da pista {{ pista.nome }}">
                 </a>
+            {% endfor %}
+        </div>
                 
                 <!-- O Lightbox (tela escura) -->
+            {% for foto in pista.galeria.split(',') %}
                 <div id="img{{ loop.index }}" class="lightbox">
-                    <a href="#fechar" class="fechar-lightbox">&times;</a>
+                    <a href="#" class="fechar-lightbox">&times;</a>
                     <img src="{{ url_for('static', filename='uploads/' ~ foto) }}">
                 </div>
-            {% endfor %}
-        </div>
-        {% endif %}
-            {% endfor %}
-        </div>
-        {% endif %}
+            {% endfor %}                
+            {% endif %}
+        
 
         {% if pista.observacoes %}
         <h2>Informações úteis</h2>
