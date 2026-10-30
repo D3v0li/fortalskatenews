@@ -425,6 +425,43 @@ h1, h2, h3 { font-family: 'Archivo', sans-serif; letter-spacing: -0.02em; line-h
     color: #D4FA67; /* Verde do seu site */
 }
 
+/* Setas da Galeria */
+.seta-lightbox {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 50px;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    padding: 20px;
+    transition: 0.3s;
+    z-index: 10000;
+    font-family: Arial, sans-serif;
+}
+
+.seta-lightbox:hover {
+    color: #D4FA67; /* Verde do seu site */
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.seta-voltar {
+    left: 20px;
+}
+
+.seta-avancar {
+    right: 20px;
+}
+
+/* No celular, diminui um pouco o tamanho das setas */
+@media (max-width: 640px) {
+    .seta-lightbox {
+        font-size: 40px;
+        padding: 10px;
+    }
+    .seta-voltar { left: 10px; }
+    .seta-avancar { right: 10px; }
+}
+
 /* No celular, vira 2 colunas */
 @media (max-width: 640px) {
     .galeria-fotos {

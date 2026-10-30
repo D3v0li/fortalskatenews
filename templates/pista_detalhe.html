@@ -37,23 +37,40 @@
         {% endif %}
 
         <!-- GALERIA DE FOTOS -->
+                <!-- GALERIA DE FOTOS -->
         {% if pista.galeria %}
         <h2>Fotos da Pista</h2>
+        {% set fotos = pista.galeria.split(',') %}
+        
         <div class="galeria-fotos">
-            {% for foto in pista.galeria.split(',') %}
+            {% for foto in fotos %}
                 <a href="#img{{ loop.index }}" class="link-galeria">
                     <img src="{{ url_for('static', filename='uploads/' ~ foto) }}" alt="Foto da pista {{ pista.nome }}">
                 </a>
             {% endfor %}
         </div>
 
-        <!-- Lightboxes (Ficam ocultos até serem clicados) -->
-        {% for foto in pista.galeria.split(',') %}
-            <div id="img{{ loop.index }}" class="lightbox">
+        <!-- Lightboxes com Setas -->
+        {% for foto in fotos %}
+            {% set index_atual = loop.index %}
+            {% set index_anterior = loop.index0 if loop.index0 > 0 else fotos|length %}
+            {% set index_proximo = loop.index + 1 if not loop.last else 1 %}
+            
+            <div id="img{{ index_atual }}" class="lightbox">
+                <!-- Botão Fechar (X) -->
                 <a href="#" class="fechar-lightbox">&times;</a>
+                
+                <!-- Seta Voltar -->
+                <a href="#img{{ index_anterior }}" class="seta-lightbox seta-voltar">&#10094;</a>
+                
+                <!-- Imagem -->
                 <img src="{{ url_for('static', filename='uploads/' ~ foto) }}">
+                
+                <!-- Seta Avançar -->
+                <a href="#img{{ index_proximo }}" class="seta-lightbox seta-avancar">&#10095;</a>
             </div>
         {% endfor %}
+        {% endif %}
         {% endif %}
 
     </div>
