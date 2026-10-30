@@ -1,13 +1,15 @@
 {% extends "base.html" %}
-{% block titulo %}{{ pista.nome }} — Skate Cultura{% endblock %}
+{% block titulo %}{{ pista.nome }} — FortalSkateNews{% endblock %}
 
 {% block conteudo %}
 <article class="container artigo-completo">
     <span class="categoria">{{ pista.bairro }} • Fortaleza, CE</span>
     <h1>{{ pista.nome }}</h1>
+    
     {% if pista.imagem %}
         <img class="capa" src="{{ url_for('static', filename='uploads/' ~ pista.imagem) }}" alt="{{ pista.nome }}">
     {% endif %}
+
     <div class="conteudo">
         <p>{{ pista.descricao }}</p>
 
@@ -15,33 +17,6 @@
         <h2>Estrutura</h2>
         <p>{{ pista.estrutura }}</p>
         {% endif %}
-        
-        <!-- NOVA GALERIA DE FOTOS -->
-        {% if pista.galeria %}
-        <h2>Fotos da Pista</h2>
-        <div class="galeria-fotos">
-            {% for foto in pista.galeria.split(',') %}
-        <!-- NOVA GALERIA DE FOTOS -->
-        {% if pista.galeria %}
-        <h2>Fotos da Pista</h2>
-        <div class="galeria-fotos">
-            {% for foto in pista.galeria.split(',') %}
-                <!-- Removi o target="_blank" -->
-                <a href="#img{{ loop.index }}" class="link-galeria">
-                    <img src="{{ url_for('static', filename='uploads/' ~ foto) }}" alt="Foto da pista {{ pista.nome }}">
-                </a>
-            {% endfor %}
-        </div>
-                
-                <!-- O Lightbox (tela escura) -->
-            {% for foto in pista.galeria.split(',') %}
-                <div id="img{{ loop.index }}" class="lightbox">
-                    <a href="#" class="fechar-lightbox">&times;</a>
-                    <img src="{{ url_for('static', filename='uploads/' ~ foto) }}">
-                </div>
-            {% endfor %}                
-            {% endif %}
-        
 
         {% if pista.observacoes %}
         <h2>Informações úteis</h2>
@@ -54,12 +29,33 @@
         {% endif %}
 
         {% if pista.link_maps %}
-        <p><a class="btn" href="{{ pista.link_maps }}" target="_blank" rel="noopener" 
-            onclick="window.open(this.href, 'mapa', 'width=800','height=600'); return false;">
-            Abrir no Google Maps
+        <p>
+            <a class="btn" href="{{ pista.link_maps }}" target="_blank" rel="noopener" onclick="window.open(this.href, 'mapa', 'width=800,height=600'); return false;">
+                Abrir no Google Maps
             </a>
         </p>
         {% endif %}
+
+        <!-- GALERIA DE FOTOS -->
+        {% if pista.galeria %}
+        <h2>Fotos da Pista</h2>
+        <div class="galeria-fotos">
+            {% for foto in pista.galeria.split(',') %}
+                <a href="#img{{ loop.index }}" class="link-galeria">
+                    <img src="{{ url_for('static', filename='uploads/' ~ foto) }}" alt="Foto da pista {{ pista.nome }}">
+                </a>
+            {% endfor %}
+        </div>
+
+        <!-- Lightboxes (Ficam ocultos até serem clicados) -->
+        {% for foto in pista.galeria.split(',') %}
+            <div id="img{{ loop.index }}" class="lightbox">
+                <a href="#" class="fechar-lightbox">&times;</a>
+                <img src="{{ url_for('static', filename='uploads/' ~ foto) }}">
+            </div>
+        {% endfor %}
+        {% endif %}
+
     </div>
 </article>
 {% endblock %}
