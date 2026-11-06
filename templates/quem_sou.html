@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block titulo %}Quem sou — Fortal SkateNews{% endblock %}
+{% block titulo %}Quem sou — FortalSkateNews{% endblock %}
 
 {% block conteudo %}
 <section class="container pagina quem-sou">
@@ -7,22 +7,23 @@
 
     <div class="bio">
         <div class="bio-foto">
-            <div class="sem-imagem"><img src=""> Foto</div>
+            <img src="{{ url_for('static', filename='uploads/autor.webp') }}" alt="Darjan - FortalSkateNews">
         </div>
         <div class="bio-texto">
-            <h2>Olá, sejam todos bem vindos(as) ao portal FortalSkateNews.</h2>
+            <h2>Olá, sejam todos bem-vindos(as) ao portal FortalSkateNews.</h2>
             <p>
-                Meu nome é Darjan, ja andei de skate e hoje em dia ainda ando às vezes rsrs. Criei esse portal para reunir notícias do dia a dia dos skatistas, pistas, eventos e dicas de treino em um só lugar.
+                Meu nome é Darjan, já andei de skate e hoje em dia ainda ando às vezes (rsrs). Criei esse portal para reunir notícias do dia a dia dos skatistas, pistas, eventos e dicas de treino em um só lugar.
             </p>
             <p>
-                A ideia surgiu quando [motivo real - ex: percebi que faltava informação sobre 
-                pistas em Fortaleza / queria ajudar skatistas iniciantes / etc].
+                Minha história no skate começou no finalzinho dos anos 80 e continuei andando até o ano de 96, mais ou menos. Já participei de campeonatos na época da UCS (União Cearense de Skate) e também corri o circuito Norte e Nordeste de skate amador da BadBoy. Vivi toda a cena do skate e seus altos e baixos aqui em Fortaleza.
             </p>
             <p>
-                Aqui você vai encontrar [o que você publica - notícias, fichas de pistas, 
-                conteúdo de preparação física].
+                Então, esse site é um pouco da minha contribuição ao skate cearense. Aqui quero levar informação para o leitor que não conhece muito o skate em Fortaleza: nossos eventos, nossos atletas destaques, os atletas que fizeram história e contribuíram para o crescimento da modalidade. Teremos também conteúdo especial sobre preparação física para os skatistas.
             </p>
-            <a class="btn" href="https://wa.me/5585999999999" target="_blank" rel="noopener">Falar no WhatsApp</a>
+            <p>
+                Espero que curtam esse novo canal de divulgação do skate! 🤘🏼🛹
+            </p>
+            <a class="btn" href="https://wa.me/5585999999999" target="_blank" rel="noopener" style="margin-top: 20px;">Falar no WhatsApp</a>
         </div>
     </div>
 </section>
