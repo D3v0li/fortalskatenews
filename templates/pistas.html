@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block titulo %}Pistas de Fortaleza — Skate Cultura{% endblock %}
+{% block titulo %}Pistas de Fortaleza — FortalSkateNews{% endblock %}
 
 {% block conteudo %}
 <section class="container pagina">
@@ -10,11 +10,14 @@
         {% for p in pistas %}
         <article class="card">
             <a href="{{ url_for('pista_detalhe', pista_id=p.id) }}">
+                
+                <!-- AQUI ESTÁ A CORREÇÃO: removemos o url_for -->
                 {% if p.imagem %}
-                    <img src="{{ url_for('static', filename='uploads/' ~ p.imagem) }}" alt="{{ p.nome }}">
+                    <img src="{{ p.imagem }}" alt="{{ p.nome }}">
                 {% else %}
                     <div class="sem-imagem">Pista</div>
                 {% endif %}
+                
                 <div class="card-info">
                     <h3>{{ p.nome }}</h3>
                     <p class="bairro">{{ p.bairro }} • Fortaleza, CE</p>
