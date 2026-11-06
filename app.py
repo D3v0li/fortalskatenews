@@ -246,6 +246,20 @@ def criar_admin_padrao():
 
 with app.app_context():
     db.create_all()
+    
+    
+        # ---- COMANDO PARA CRIAR A COLUNA GALERIA ----
+    from sqlalchemy import text
+    try:
+        db.session.execute(text("ALTER TABLE pistas ADD COLUMN galeria TEXT;"))
+        db.session.commit()
+        print("Coluna galeria criada com sucesso!")
+    except Exception as e:
+        db.session.rollback()
+        # Se a coluna já existir, ele ignora o erro e segue em frente
+        pass
+    # ---------------------------------------------
+    
     criar_admin_padrao()
 
 if __name__ == "__main__":
