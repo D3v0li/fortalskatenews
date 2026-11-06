@@ -174,3 +174,111 @@ h1, h2, h3 { font-family: 'Archivo', sans-serif; letter-spacing: -0.02em; line-h
     .hero { padding: 60px 0 40px; }
     .rodape-conteudo { grid-template-columns: 1fr; }
 }
+
+/* ===== Galeria de Fotos ===== */
+.galeria-fotos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.galeria-fotos img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.galeria-fotos img:hover {
+    transform: scale(1.05);
+}
+
+/* ===== Lightbox (Tela cheia) ===== */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox:target {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* Botão Fechar */
+.fechar-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 50px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    line-height: 1;
+    z-index: 10000;
+}
+
+.fechar-lightbox:hover {
+    color: #D4FA67;
+}
+
+/* Setas de Navegação */
+.seta-lightbox {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 50px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    padding: 20px;
+    z-index: 10000;
+    font-family: Arial, sans-serif;
+}
+
+.seta-lightbox:hover {
+    color: #D4FA67;
+}
+
+.seta-voltar { left: 20px; }
+.seta-avancar { right: 20px; }
+
+/* ===== Ajustes para Celular ===== */
+@media (max-width: 768px) {
+    .galeria-fotos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    
+    .galeria-fotos img {
+        height: 140px;
+    }
+
+    .seta-lightbox {
+        font-size: 40px;
+        padding: 10px 15px;
+        background: rgba(0, 0, 0, 0.5); /* Fundo escuro para aparecer no celular */
+        border-radius: 50%;
+    }
+    
+    .seta-voltar { left: 10px; }
+    .seta-avancar { right: 10px; }
+    
+    .fechar-lightbox {
+        top: 10px;
+        right: 15px;
+        font-size: 40px;
+    }
+}
