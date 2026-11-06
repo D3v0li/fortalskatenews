@@ -60,6 +60,7 @@ def salvar_imagem(arquivo):
         return None
     
     try:
+        # Envia direto para a nuvem
         resultado = cloudinary.uploader.upload(arquivo)
         return resultado['secure_url']
     except Exception as e:
