@@ -36,7 +36,6 @@
         </p>
         {% endif %}
 
-        <!-- GALERIA DE FOTOS -->
         {% if pista.galeria %}
         <h2>Fotos da Pista</h2>
         {% set fotos = pista.galeria.split(',') %}
@@ -49,7 +48,6 @@
             {% endfor %}
         </div>
 
-        <!-- Lightboxes com Setas -->
         {% for foto in fotos %}
             <div id="img{{ loop.index }}" class="lightbox">
                 <a href="#" class="fechar-lightbox">&times;</a>
